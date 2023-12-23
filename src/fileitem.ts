@@ -10,6 +10,7 @@ export class FileItem implements QuickPickItem {
     description?: string;
     fileType?: FileType;
     action?: Action;
+    buttons?: vscode.QuickInputButton[];
 
     constructor(record: [string, FileType]) {
         const [name, fileType] = record;
@@ -28,6 +29,12 @@ export class FileItem implements QuickPickItem {
                 break;
             default:
                 this.label = `$(file) ${name}`;
+                this.buttons = [
+                    {
+                        iconPath: new vscode.ThemeIcon('split-horizontal'),
+                        tooltip: 'Open in Horizontal split',
+                    },
+                ];
                 break;
         }
     }
