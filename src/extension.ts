@@ -243,8 +243,10 @@ class FileBrowser {
 
     async openActiveFileHorizontalSplit() {
         this.activeItem().ifSome(item => {
-            if(item.fileType === FileType.File) {
+            if (item.fileType === FileType.File) {
                 this.openFile(this.path.append(item.name).uri, ViewColumn.Beside);
+            } else {
+                this.openFile(this.path.append(item.name).uri.with({ scheme: "untitled" }), ViewColumn.Beside);
             }
         });
     }
